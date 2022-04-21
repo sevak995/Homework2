@@ -7,6 +7,30 @@ class PromiseSimple {
     executionFunction(this.onResolve, this.onReject);
   }
 
+  static all(promises) {
+    if (promises.length === 0) {
+      return;
+    }
+
+    return new PromiseSimple((resolve, reject) => {
+      const results = [];
+      let resolved = 0;
+      promises.forEach((promise, i) => {
+        promise
+          .then((result) => {
+            results[i] = result;
+            resolved++;
+            if (resolved === promises.length) {
+              resolve(results);
+            }
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    });
+  }
+
   then(thenCallback) {
     this.allThenFunctions.push(thenCallback);
     return this;
@@ -48,7 +72,6 @@ const makeApiCall = (
     xhr.responseType = config.responseType;
     xhr.onload = function () {
       const { response, status } = this;
-      console.log(this);
       if (status === 200) {
         resolve(response);
       } else {
@@ -69,6 +92,38 @@ makeApiCall("https://jsonplaceholder.typicode.com/todos/1")
   })
   .then((data2) => {
     console.log(data2);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+const promise1 = new PromiseSimple((resove, reject) => {
+  setTimeout(reject, 1500, { status: "404" });
+});
+
+const promise2 = new PromiseSimple((resove, reject) => {
+  setTimeout(resove, 1500, { status: "OK" });
+});
+
+const promise3 = new PromiseSimple((resove, reject) => {
+  setTimeout(resove, 1500, { status: "OK" });
+});
+
+const promise4 = new PromiseSimple((resove, reject) => {
+  setTimeout(resove, 1500, { status: "OK" });
+});
+
+PromiseSimple.all([promise1, promise2])
+  .then((values) => {
+    console.log(values);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+PromiseSimple.all([promise3, promise4])
+  .then((values) => {
+    console.log(values);
   })
   .catch((error) => {
     console.log(error);
