@@ -14,21 +14,21 @@ class DomElement {
 
     if (typeof this.children === 'string') {
       element.textContent = this.children;
-    } else {
-      this.children ? element.appendChild(this.children) : null;
+    } else if (Array.isArray(this.children)) {
+      this.children.forEach((child) => {
+        element.appendChild(child.draw());
+      });
+    } else if (this.children && typeof this.children === 'object') {
+      const { type, attributes, children } = this.children;
+      const child = new DomElement(type, attributes, children);
+      element.appendChild(child.draw());
     }
     return element;
   }
 }
 
 function el(type, attributes, children) {
-  if (Array.isArray(children)) {
-    const parentElement = document.createElement(type);
-    children.forEach((child) => parentElement.appendChild(child));
-    return parentElement;
-  }
-  const element = new DomElement(type, attributes, children);
-  return element.draw();
+  return new DomElement(type, attributes, children);
 }
 
 const tree = el('form', { action: '/some_action' }, [
@@ -56,4 +56,4 @@ const tree = el('form', { action: '/some_action' }, [
   el('input', { type: 'submit', value: 'Submit' }, null),
 ]);
 
-document.getElementById('root').appendChild(tree);
+document.getElementById('root').appendChild(tree.draw());
