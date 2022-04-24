@@ -5,7 +5,7 @@ class DomElement {
     this.children = children;
   }
 
-  drow() {
+  draw() {
     const element = document.createElement(this.type);
 
     for (const attribute in this.attributes) {
@@ -28,7 +28,7 @@ function el(type, attributes, children) {
     return parentElement;
   }
   const element = new DomElement(type, attributes, children);
-  return element.drow();
+  return element.draw();
 }
 
 const tree = el('form', { action: '/some_action' }, [
