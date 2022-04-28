@@ -1,0 +1,92 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.app {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 1.6rem;
+}
+
+.quotes-list {
+  background-color: rgb(235, 235, 235);
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 5rem;
+  padding: 2.6rem 2.6rem;
+}
+
+.cart {
+  background-color: #162b2b;
+  color: white;
+  border-radius: 6px;
+  padding: 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.author {
+  text-align: end;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  background-color: rgb(235, 235, 235);
+  flex-basis: 500px;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  padding: 2rem;
+  font-weight: bold;
+  background-color: #162b2b;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: orange;
+}
+.btns {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2rem;
+}
+
+.btn-delete {
+  background-color: #edca8a;
+  color: #162b2b;
+  padding: 0.8rem;
+}
+
+.btn-sorted {
+  background-color: orange;
+}
+.mean {
+  font-weight: bold;
+  align-self: center;
+  font-size: 2rem;
+}
+
+.selected {
+  background-color: #60491e;
+}
