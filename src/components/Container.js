@@ -9,14 +9,16 @@ export default class Container extends Component {
   }
 
   addHandler() {
-    this.props.onAdd(this.props.name);
+    this.props.onAdd(this.props.containerName);
   }
 
   onSort() {
     this.setState((prev) => {
-      return prev.sorted === null || prev.sorted === 'DOWN'
-        ? { sorted: 'UP' }
-        : { sorted: 'DOWN' };
+      return prev.sorted === null
+        ? { sorted: 'asc' }
+        : prev.sorted === 'asc'
+        ? { sorted: 'desc' }
+        : { sorted: null };
     });
   }
 
@@ -25,30 +27,32 @@ export default class Container extends Component {
   }
 
   render() {
-    let data;
-    const unsortedData = this.props.quotesData.filter((quote) => {
-      return quote.sectionName === this.props.name;
+    const { containerName, quotes } = this.props;
+
+    let selectedQuotes;
+    const unsortedQuotes = quotes.filter((quote) => {
+      return quote.sectionName === containerName;
     });
 
     if (this.state.sorted === null) {
-      data = unsortedData;
-    } else if (this.state.sorted === 'UP') {
-      const sortedUp = unsortedData.sort((a, b) => {
+      selectedQuotes = unsortedQuotes;
+    } else if (this.state.sorted === 'asc') {
+      const sortedUp = unsortedQuotes.sort((a, b) => {
         return b.mean - a.mean;
       });
-      data = sortedUp;
+      selectedQuotes = sortedUp;
     } else {
-      const sortedDown = unsortedData.sort((a, b) => {
+      const sortedDown = unsortedQuotes.sort((a, b) => {
         return a.mean - b.mean;
       });
-      data = sortedDown;
+      selectedQuotes = sortedDown;
     }
 
     const sortBtnStyle = this.state.sorted ? 'btn btn-sorted' : 'btn';
     const sortBtnContent =
-      this.state.sorted === 'DOWN'
+      this.state.sorted === 'desc'
         ? 'Sorted lowest to highest'
-        : this.state.sorted === 'UP'
+        : this.state.sorted === 'asc'
         ? 'Sorted highest to lowest'
         : 'Unsorted!';
 
@@ -59,15 +63,15 @@ export default class Container extends Component {
             {sortBtnContent}
           </button>
           <button className="btn" onClick={() => this.addHandler()}>
-            Add to {this.props.name}
+            Add to {containerName}
           </button>
         </div>
         <div>
           <ul className="quotes-list">
-            {data.map((quote) => {
+            {selectedQuotes.map((quote) => {
               return (
                 <SelectedQuote
-                  quoteData={quote}
+                  quote={quote}
                   key={quote.id}
                   onDelete={(id) => this.onDelete(id)}
                 />

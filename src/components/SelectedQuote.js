@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 export default class SelectedQuote extends Component {
   onDelete(id) {
@@ -6,7 +6,7 @@ export default class SelectedQuote extends Component {
   }
 
   render() {
-    const { id, text, author, mean } = this.props.quoteData;
+    const { id, text, author, mean } = this.props.quote;
 
     return (
       <li className="cart">

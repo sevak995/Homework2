@@ -1,4 +1,4 @@
-const quotesData = [
+export const quotes = [
   {
     text: 'Genius is one percent inspiration and ninety-nine percent perspiration.',
     author: 'Thomas Edison',
@@ -137,5 +137,3 @@ const quotesData = [
     sectionName: 'main',
   },
 ];
-
-export default quotesData;

@@ -4,12 +4,12 @@ import '../App.css';
 
 export default class Pool extends Component {
   render() {
-    const { quotesData } = this.props;
+    const { quotes } = this.props;
 
     return (
       <div className="container">
         <ul className="quotes-list">
-          {quotesData.map((quote) => {
+          {quotes.map((quote) => {
             return <Quote quoteData={quote} key={quote.id} />;
           })}
         </ul>
