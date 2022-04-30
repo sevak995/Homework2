@@ -2,7 +2,7 @@ import { Component } from 'react';
 
 export default class Quote extends Component {
   render() {
-    const { text, author, comments, sectionName } = this.props.quoteData;
+    const { text, author, comments, sectionName } = this.props.quote;
     return (
       <li className={sectionName === 'main' ? 'cart' : 'cart selected'}>
         <div>{text}</div>

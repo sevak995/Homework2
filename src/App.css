@@ -9,7 +9,9 @@ html {
 }
 
 .app {
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 2.5rem;
   font-size: 1.6rem;
 }
@@ -51,6 +53,8 @@ html {
   flex-basis: 500px;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  /* flex-basis: auto; */
 }
 
 .btn,
@@ -99,7 +103,7 @@ form {
 }
 
 input {
-  padding: 2rem;
+  padding: 2rem 10rem;
   border-radius: 6px;
   border: none;
   font-size: 2rem;
@@ -107,4 +111,35 @@ input {
 
 input:focus-visible {
   outline: none;
+}
+
+.pagination {
+  align-self: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination button,
+.pagination button:link,
+.pagination button:visited {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  border: 2px solid #162b2b;
+  font-size: 1.6rem;
+}
+
+.pagination button:hover,
+.pagination button:active {
+  background-color: orange;
+}
+
+.pagination-btn--active {
+  background-color: #162b2b;
+  color: white;
+}
+
+.hidden {
+  display: none;
 }

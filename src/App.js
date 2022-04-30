@@ -3,12 +3,12 @@ import { Component } from 'react';
 import Pool from './components/Pool';
 import Container from './components/Container';
 import { quotes } from './components/quotesData';
-import { returnMean } from './utils/utils';
+import { returnMean, search } from './utils/utils';
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { quotes };
+    this.state = { quotes, searchResult: null };
   }
 
   addHandler(list) {
@@ -50,10 +50,30 @@ export default class App extends Component {
     this.setState({ quotes: updatedQuotes });
   }
 
+  queryHandler(query) {
+    const { quotes } = this.state;
+
+    if (query.trim().length < 3) {
+      this.setState({ searchResult: null });
+      return;
+    }
+
+    const searchResult = search(query, quotes);
+
+    this.setState({ searchResult: searchResult });
+  }
+
   render() {
     return (
       <div className="app">
-        <Pool quotes={this.state.quotes} />
+        <Pool
+          quotes={
+            this.state.searchResult
+              ? this.state.searchResult
+              : this.state.quotes
+          }
+          query={(query) => this.queryHandler(query)}
+        />
         <Container
           onAdd={(list) => this.addHandler(list)}
           quotes={this.state.quotes}

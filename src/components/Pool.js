@@ -3,45 +3,52 @@ import Quote from './Quote';
 import '../App.css';
 import Search from './Search';
 import Pagination from './Pagination';
+import { getPaginatedQuotes } from '../utils/utils';
+import NewCommnet from './NewComment';
 
 export default class Pool extends Component {
   constructor(props) {
     super(props);
-    this.state = { quotes: this.props.quotes };
+    this.state = { currentPage: 1 };
   }
 
   queryHandler(query) {
-    const { quotes } = this.props;
+    this.setState({ currentPage: 1 });
+    this.props.query(query);
+  }
 
-    const filteredQuotes = quotes.filter((quote) => {
-      if (query.trim().length < 3) {
-        return quotes;
-      }
+  paginate(page) {
+    const { currentPage } = this.state;
 
-      const { text, author, comments } = quote;
-
-      const commentsText = comments.map((comment) => comment.text);
-
-      const searchArea = [text, author, ...commentsText];
-
-      return searchArea.find((text) =>
-        text.toLowerCase().includes(query.toLowerCase())
-      );
-    });
-
-    this.setState({ quotes: filteredQuotes });
+    if (page === 'next') {
+      this.setState({ currentPage: currentPage + 1 });
+    } else if (page === 'prev') {
+      this.setState({ currentPage: currentPage - 1 });
+    } else {
+      this.setState({ currentPage: page });
+    }
   }
 
   render() {
-    const { quotes } = this.state;
+    const { currentPage } = this.state;
+    const { quotes } = this.props;
+
+    const paginatedQuotes = getPaginatedQuotes(quotes, currentPage);
 
     return (
       <div className="container">
         <Search query={(query) => this.queryHandler(query)} />
-        <Pagination />
+        <Pagination
+          quotes={quotes}
+          page={currentPage}
+          paginate={(page) => this.paginate(page)}
+        />
+
+        {/* <button className="btn">ADD NEW COOMENT</button>
+        <NewCommnet /> */}
         <ul className="quotes-list">
-          {quotes.map((quote) => {
-            return <Quote quoteData={quote} key={quote.id} />;
+          {paginatedQuotes.map((quote) => {
+            return <Quote quote={quote} key={quote.id} />;
           })}
         </ul>
       </div>
