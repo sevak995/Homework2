@@ -3,10 +3,16 @@ export const quotes = [
     text: 'Genius is one percent inspiration and ninety-nine percent perspiration.',
     author: 'Thomas Edison',
     comments: [
-      { text: 'Excellent!', value: 10 },
-      { text: 'Good!', value: 8 },
-      { text: 'Not bad!', value: 5 },
-      { text: 'Bad!', value: 3 },
+      { text: 'this author is a very creative student.', value: 10 },
+      { text: 'this author is doing well for his abilities.', value: 8 },
+      {
+        text: 'I seem to learn something new about this author every day.',
+        value: 5,
+      },
+      {
+        text: 'I think this author brings a unique energy to my class.',
+        value: 3,
+      },
     ],
     id: '1',
     sectionName: 'main',
@@ -15,10 +21,22 @@ export const quotes = [
     text: 'You can observe a lot just by watching.',
     author: 'Yogi Berra',
     comments: [
-      { text: 'Excellent!', value: 9 },
-      { text: 'Good!', value: 7 },
-      { text: 'Good!', value: 6 },
-      { text: 'Bad!', value: 3 },
+      {
+        text: 'I can see that this author has many strengths as a student.',
+        value: 9,
+      },
+      {
+        text: 'I see a lot of potential in this author as an English student.',
+        value: 7,
+      },
+      {
+        text: 'this author shows a lot of promise as an English student.',
+        value: 6,
+      },
+      {
+        text: 'Its always interesting to have this author in my class.',
+        value: 3,
+      },
     ],
     id: '2',
     sectionName: 'main',
@@ -27,12 +45,21 @@ export const quotes = [
     text: 'A house divided against itself cannot stand.',
     author: 'Abraham Lincoln',
     comments: [
-      { text: 'Excellent!', value: 10 },
-      { text: 'Good!', value: 8 },
-      { text: 'Not bad!', value: 5 },
-      { text: 'Bad!', value: 3 },
-      { text: 'Excellent!', value: 10 },
-      { text: 'Excellent!', value: 10 },
+      {
+        text: 'As a teacher, I like to focus a lot on this author.',
+        value: 10,
+      },
+      { text: 'I learn something new about this author every day.', value: 8 },
+      { text: 'I think this author is a very consistent student.', value: 5 },
+      { text: 'this author shows a lot of creativity in my class.', value: 3 },
+      {
+        text: 'I enjoy when he gives his answers in the classroom.',
+        value: 10,
+      },
+      {
+        text: 'He often likes to participate in class or help his classmates with the work when he knows the answer.',
+        value: 10,
+      },
     ],
     id: '3',
     sectionName: 'main',
@@ -41,12 +68,21 @@ export const quotes = [
     text: 'Difficulties increase the nearer we get to the goal.',
     author: 'Johann Wolfgang von Goethe',
     comments: [
-      { text: 'Excellent!', value: 9 },
-      { text: 'Good!', value: 8 },
-      { text: 'Not bad!', value: 5 },
-      { text: 'Bad!', value: 3 },
-      { text: 'Not bad!', value: 4 },
-      { text: 'Excellent!', value: 8 },
+      {
+        text: 'When he is confident about the answer, he loves to participate in class.',
+        value: 9,
+      },
+      { text: 'He likes participating in class activities.', value: 8 },
+      {
+        text: 'He gets very excited when he sees an opportunity to participate in class and show off his English skills.',
+        value: 5,
+      },
+      { text: 'I love when he participates in class.', value: 3 },
+      {
+        text: 'I always love the effort he puts forth whenever he participates in the classroom.',
+        value: 4,
+      },
+      { text: 'He loves to participate when he knows the answer.', value: 8 },
     ],
     id: '4',
     sectionName: 'main',
@@ -55,12 +91,30 @@ export const quotes = [
     text: 'Fate is in your hands and no one elses',
     author: 'Byron Pulsifer',
     comments: [
-      { text: 'Not bad!', value: 3 },
-      { text: 'Good!', value: 8 },
-      { text: 'Excellent!', value: 10 },
-      { text: 'Bad!', value: 2 },
-      { text: 'Not bad!', value: 4 },
-      { text: 'Excellent!', value: 8 },
+      {
+        text: 'He loves when he can use new words he learned in class.',
+        value: 3,
+      },
+      {
+        text: 'He has demonstrated that he is able to learn new vocabulary quite quickly when he wants to.',
+        value: 8,
+      },
+      {
+        text: 'I see him use new words he has learned in his work frequently.',
+        value: 10,
+      },
+      {
+        text: 'He has learned a lot of new vocabulary through the class readings and our lessons!',
+        value: 2,
+      },
+      {
+        text: 'He is being challenged to learn new words every day during my lessons.',
+        value: 4,
+      },
+      {
+        text: 'He seems to be acquiring a natural speaking grammar from listening English-speaking in class, which is great.',
+        value: 8,
+      },
     ],
     id: '5',
     sectionName: 'main',

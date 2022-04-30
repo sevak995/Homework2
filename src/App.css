@@ -49,6 +49,8 @@ html {
 .container {
   background-color: rgb(235, 235, 235);
   flex-basis: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .btn,
@@ -89,4 +91,20 @@ html {
 
 .selected {
   background-color: #60491e;
+}
+
+form {
+  align-self: center;
+  padding-top: 2rem;
+}
+
+input {
+  padding: 2rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 2rem;
+}
+
+input:focus-visible {
+  outline: none;
 }
