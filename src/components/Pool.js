@@ -4,7 +4,6 @@ import '../App.css';
 import Search from './Search';
 import Pagination from './Pagination';
 import { getPaginatedQuotes } from '../utils/utils';
-import NewCommnet from './NewComment';
 
 export default class Pool extends Component {
   constructor(props) {
@@ -29,6 +28,14 @@ export default class Pool extends Component {
     }
   }
 
+  addCommentHandler(newComment) {
+    this.props.addCommentHandler(newComment);
+  }
+
+  onAddReplay(replay) {
+    this.props.onAddReplay(replay);
+  }
+
   render() {
     const { currentPage } = this.state;
     const { quotes } = this.props;
@@ -44,11 +51,18 @@ export default class Pool extends Component {
           paginate={(page) => this.paginate(page)}
         />
 
-        {/* <button className="btn">ADD NEW COOMENT</button>
-        <NewCommnet /> */}
         <ul className="quotes-list">
           {paginatedQuotes.map((quote) => {
-            return <Quote quote={quote} key={quote.id} />;
+            return (
+              <Quote
+                quote={quote}
+                key={quote.id}
+                addCommentHandler={(newComment) =>
+                  this.addCommentHandler(newComment)
+                }
+                onAddReplay={(replay) => this.onAddReplay(replay)}
+              />
+            );
           })}
         </ul>
       </div>

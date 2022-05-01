@@ -18,10 +18,10 @@ export default class Pagination extends Component {
   }
 
   getPaginationGroup() {
-    const { page: currentPage } = this.props;
+    const { page } = this.props;
 
     const start =
-      Math.floor((currentPage - 1) / PAGE_LIMIT_IN_GROUP) * PAGE_LIMIT_IN_GROUP;
+      Math.floor((page - 1) / PAGE_LIMIT_IN_GROUP) * PAGE_LIMIT_IN_GROUP;
 
     const paginationGroup = new Array(PAGE_LIMIT_IN_GROUP)
       .fill()

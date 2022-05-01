@@ -54,7 +54,7 @@ export default class Container extends Component {
         ? 'Sorted lowest to highest'
         : this.state.sorted === 'asc'
         ? 'Sorted highest to lowest'
-        : 'Unsorted!';
+        : 'Unsorted !';
 
     return (
       <div className="container">

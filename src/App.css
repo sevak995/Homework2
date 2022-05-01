@@ -9,7 +9,6 @@ html {
 }
 
 .app {
-  /* display: flex; */
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 2.5rem;
@@ -45,7 +44,13 @@ html {
 
 .comment {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.comment-info {
+  display: flex;
+  gap: 2rem;
 }
 
 .container {
@@ -97,19 +102,19 @@ html {
   background-color: #60491e;
 }
 
-form {
+.search-form {
   align-self: center;
   padding-top: 2rem;
 }
 
-input {
+.search-input {
   padding: 2rem 10rem;
   border-radius: 6px;
   border: none;
   font-size: 2rem;
 }
 
-input:focus-visible {
+.search-input:focus-visible {
   outline: none;
 }
 
@@ -142,4 +147,27 @@ input:focus-visible {
 
 .hidden {
   display: none;
+}
+
+textarea {
+  width: 85%;
+  height: 8rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  resize: none;
+  background-color: rgb(235, 235, 235);
+}
+
+.rate-input {
+  height: 8rem;
+  width: 4rem;
+  background-color: rgb(235, 235, 235);
+  border-radius: 8px;
+  font-size: 2rem;
+  padding: 0rem;
+}
+
+.newComment-form {
+  display: flex;
 }

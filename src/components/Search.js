@@ -8,8 +8,9 @@ export default class Search extends Component {
 
   render() {
     return (
-      <form>
+      <form className="search-form">
         <input
+          className="search-input"
           placeholder="Search"
           onChange={(event) => this.searchHandler(event.target.value)}
         />

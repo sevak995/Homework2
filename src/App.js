@@ -4,6 +4,7 @@ import Pool from './components/Pool';
 import Container from './components/Container';
 import { quotes } from './components/quotesData';
 import { returnMean, search } from './utils/utils';
+import NewCommnet from './components/NewComment';
 
 export default class App extends Component {
   constructor() {
@@ -63,6 +64,59 @@ export default class App extends Component {
     this.setState({ searchResult: searchResult });
   }
 
+  addCommentHandler(NewCommnet) {
+    console.log(NewCommnet);
+
+    const { id, text, rate } = NewCommnet;
+
+    const { quotes } = this.state;
+
+    const updatedQuotes = quotes.map((quote) => {
+      if (quote.id === id) {
+        const { comments } = quote;
+        const newId = String(comments.length + 1);
+
+        comments.push({ id: newId, text: text, value: rate });
+
+        return { ...quote, comments };
+      } else {
+        return quote;
+      }
+    });
+
+    this.setState({ quotes: updatedQuotes });
+  }
+
+  onAddReplay(replay) {
+    const { text, commentId, quoteId } = replay;
+
+    const { quotes } = this.state;
+
+    const updatedQuotes = quotes.map((quote) => {
+      if (quote.id === quoteId) {
+        const { comments } = quote;
+
+        const updatedComments = comments.map((comment) => {
+          if (comment.id === commentId) {
+            if (comment.replays === undefined) {
+              comment.replays = [];
+            }
+
+            const newId = comment.replays.length + 1;
+            comment.replays.push({ id: newId, text });
+          }
+          return { ...comment };
+        });
+
+        return { ...quote, comments: updatedComments };
+      } else {
+        return quote;
+      }
+    });
+
+    this.setState({ quotes: updatedQuotes });
+  }
+
   render() {
     return (
       <div className="app">
@@ -73,6 +127,8 @@ export default class App extends Component {
               : this.state.quotes
           }
           query={(query) => this.queryHandler(query)}
+          addCommentHandler={(NewCommnet) => this.addCommentHandler(NewCommnet)}
+          onAddReplay={(replay) => this.onAddReplay(replay)}
         />
         <Container
           onAdd={(list) => this.addHandler(list)}
