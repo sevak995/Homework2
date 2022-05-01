@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import styles from './NewComment.module.css';
 
 export default class NewCommnet extends Component {
   onAddComment(event) {
@@ -17,20 +18,25 @@ export default class NewCommnet extends Component {
   render() {
     return (
       <form onSubmit={(event) => this.onAddComment(event)}>
-        <div className="newComment-form">
-          <textarea placeholder="Text"></textarea>
-          <input
-            placeholder="Rate"
-            className="rate-input"
-            name="rate"
-            type="number"
-            min="0"
-            max="10"
-          ></input>
+        <div className={styles['newComment-form']}>
+          <div className={styles['newComment-input']}>
+            <textarea placeholder="Text" className={styles.textarea}></textarea>
+            <div className={styles['rate-label']}>Rate</div>
+            <input
+              className={styles['rate-input']}
+              name="rate"
+              type="number"
+              min="0"
+              max="10"
+            ></input>
+          </div>
+          <button
+            className={styles['btn'] + ' ' + styles['btn-yellow']}
+            type="submit"
+          >
+            Submit
+          </button>
         </div>
-        <button className="btn btn-delete" type="submit">
-          Submit
-        </button>
       </form>
     );
   }

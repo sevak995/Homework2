@@ -65,15 +65,23 @@ export const quotes = [
         text: 'I learn something new about this author every day.',
         value: 8,
       },
-      { text: 'I think this author is a very consistent student.', value: 5 },
-      { text: 'this author shows a lot of creativity in my class.', value: 3 },
       {
         id: '3',
+        text: 'I think this author is a very consistent student.',
+        value: 5,
+      },
+      {
+        id: '4',
+        text: 'this author shows a lot of creativity in my class.',
+        value: 3,
+      },
+      {
+        id: '5',
         text: 'I enjoy when he gives his answers in the classroom.',
         value: 10,
       },
       {
-        id: '4',
+        id: '6',
         text: 'He often likes to participate in class or help his classmates with the work when he knows the answer.',
         value: 10,
       },
@@ -135,17 +143,17 @@ export const quotes = [
         value: 10,
       },
       {
-        id: '3',
+        id: '4',
         text: 'He has learned a lot of new vocabulary through the class readings and our lessons!',
         value: 2,
       },
       {
-        id: '4',
+        id: '5',
         text: 'He is being challenged to learn new words every day during my lessons.',
         value: 4,
       },
       {
-        id: '5',
+        id: '6',
         text: 'He seems to be acquiring a natural speaking grammar from listening English-speaking in class, which is great.',
         value: 8,
       },

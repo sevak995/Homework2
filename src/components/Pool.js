@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Quote from './Quote';
-import '../App.css';
+import styles from './Pool.module.css';
 import Search from './Search';
 import Pagination from './Pagination';
 import { getPaginatedQuotes } from '../utils/utils';
@@ -43,7 +43,7 @@ export default class Pool extends Component {
     const paginatedQuotes = getPaginatedQuotes(quotes, currentPage);
 
     return (
-      <div className="container">
+      <div className={styles.container}>
         <Search query={(query) => this.queryHandler(query)} />
         <Pagination
           quotes={quotes}
@@ -51,7 +51,7 @@ export default class Pool extends Component {
           paginate={(page) => this.paginate(page)}
         />
 
-        <ul className="quotes-list">
+        <ul className={styles.quotesList}>
           {paginatedQuotes.map((quote) => {
             return (
               <Quote

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import NewCommnet from './NewComment';
 import Comment from './Comment';
+import styles from './Quote.module.css';
 
 export default class Quote extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class Quote extends Component {
 
   addCommentHandler(newComment) {
     this.props.addCommentHandler(newComment);
+    this.setState({ showForm: false });
   }
 
   toggleForm(id) {
@@ -22,8 +24,6 @@ export default class Quote extends Component {
   onAddReplay(replay) {
     const { quote } = this.props;
 
-    console.log(quote);
-
     this.props.onAddReplay({ ...replay, quoteId: quote.id });
   }
 
@@ -31,10 +31,34 @@ export default class Quote extends Component {
     const { text, author, comments, sectionName, id } = this.props.quote;
     const { showForm } = this.state;
 
+    const ListClass =
+      sectionName === 'main'
+        ? styles.cart
+        : styles.cart + ' ' + styles.selected;
+
     return (
-      <li className={sectionName === 'main' ? 'cart' : 'cart selected'}>
-        <button onClick={() => this.toggleForm(id)} className="btn btn-delete">
-          ADD NEW COMMENT
+      <li className={ListClass}>
+        <div className={styles['quote-info']}>
+          <div className={styles['quote-text']}>{text}</div>
+          <div className={styles.author}>{author}</div>
+        </div>
+        <div>Comments</div>
+        <div className={styles.comments}>
+          {comments.map((comment) => {
+            return (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                onAddReplay={(replay) => this.onAddReplay(replay)}
+              />
+            );
+          })}
+        </div>
+        <button
+          onClick={() => this.toggleForm(id)}
+          className={styles.btn + ' ' + styles['btn-yellow']}
+        >
+          Add new comment
         </button>
         {showForm && (
           <NewCommnet
@@ -42,17 +66,6 @@ export default class Quote extends Component {
             addComment={(newComment) => this.addCommentHandler(newComment)}
           />
         )}
-        <div>{text}</div>
-        <div className="author">{author}</div>
-        {comments.map((comment, i) => {
-          return (
-            <Comment
-              key={comment.id}
-              comment={comment}
-              onAddReplay={(replay) => this.onAddReplay(replay)}
-            />
-          );
-        })}
       </li>
     );
   }

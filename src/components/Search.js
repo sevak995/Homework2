@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import '../App.css';
+import styles from './Search.module.css';
 
 export default class Search extends Component {
   searchHandler(query) {
@@ -8,9 +8,9 @@ export default class Search extends Component {
 
   render() {
     return (
-      <form className="search-form">
+      <form className={styles['search-form']}>
         <input
-          className="search-input"
+          className={styles['search-input']}
           placeholder="Search"
           onChange={(event) => this.searchHandler(event.target.value)}
         />

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import SelectedQuote from './SelectedQuote';
-import '../App.css';
+import styles from './Container.module.css';
 
 export default class Container extends Component {
   constructor(props) {
@@ -48,7 +48,9 @@ export default class Container extends Component {
       selectedQuotes = sortedDown;
     }
 
-    const sortBtnStyle = this.state.sorted ? 'btn btn-sorted' : 'btn';
+    const sortBtnStyle = this.state.sorted
+      ? styles.btn
+      : styles.btn + ' ' + styles['btn-sorted'];
     const sortBtnContent =
       this.state.sorted === 'desc'
         ? 'Sorted lowest to highest'
@@ -57,17 +59,17 @@ export default class Container extends Component {
         : 'Unsorted !';
 
     return (
-      <div className="container">
-        <div className="btns">
+      <div className={styles.container}>
+        <div className={styles.btns}>
           <button className={sortBtnStyle} onClick={() => this.onSort()}>
             {sortBtnContent}
           </button>
-          <button className="btn" onClick={() => this.addHandler()}>
+          <button className={styles.btn} onClick={() => this.addHandler()}>
             Add to {containerName}
           </button>
         </div>
         <div>
-          <ul className="quotes-list">
+          <ul className={styles['quotes-list']}>
             {selectedQuotes.map((quote) => {
               return (
                 <SelectedQuote

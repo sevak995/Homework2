@@ -1,10 +1,10 @@
-import './App.css';
+// import './App.css';
 import { Component } from 'react';
 import Pool from './components/Pool';
 import Container from './components/Container';
 import { quotes } from './components/quotesData';
 import { returnMean, search } from './utils/utils';
-import NewCommnet from './components/NewComment';
+import styles from './App.module.css';
 
 export default class App extends Component {
   constructor() {
@@ -119,7 +119,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className={styles.app}>
         <Pool
           quotes={
             this.state.searchResult
