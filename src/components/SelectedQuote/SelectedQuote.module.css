@@ -1,7 +1,18 @@
-.replay-form {
+.cart {
+  background-color: #162b2b;
+  color: white;
+  border-radius: 6px;
+  padding: 3rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+}
+
+.mean {
+  font-weight: bold;
+  align-self: center;
+  font-size: 2rem;
 }
 
 .btn,
@@ -20,18 +31,19 @@
   background-color: orange;
 }
 
-.btn-yellow {
+.btnYellow {
   background-color: #edca8a;
   color: #162b2b;
   padding: 0.8rem;
 }
 
-.textarea {
-  width: 85%;
-  height: 8rem;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 1.6rem;
-  resize: none;
-  background-color: rgb(235, 235, 235);
+.author {
+  text-align: end;
+  font-size: 1.8rem;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.starRow {
+  display: flex;
 }

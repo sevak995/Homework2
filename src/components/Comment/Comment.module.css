@@ -5,34 +5,34 @@
   border: 1px solid #edca8a;
   border-radius: 10px;
   padding: 2rem;
-  gap: 5rem;
+  gap: 3rem;
 }
 
-.comment-info {
+.commentInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
 }
 
-.comment-green {
+.commentGreen {
   background-color: #123212;
 }
 
-.comment-yellow {
+.commentYellow {
   background-color: #7a5405;
 }
 
-.comment-red {
+.commentRed {
   background-color: #570000;
 }
 
-.replays-form {
+.replysForm {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.replays-list {
+.replysList {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -54,8 +54,17 @@
   background-color: orange;
 }
 
-.btn-yellow {
+.btnYellow {
   background-color: #edca8a;
   color: #162b2b;
   padding: 0.8rem;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: yellow;
+}
+
+.starRow {
+  display: flex;
 }

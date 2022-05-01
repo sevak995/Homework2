@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { PAGE_LIMIT_IN_GROUP } from '../config/config';
-import { getLastPage } from '../utils/utils';
+import { PAGE_LIMIT_IN_GROUP } from '../../config/config';
+import { getLastPage } from '../../utils/utils';
 import styles from './Pagination.module.css';
 
 export default class Pagination extends Component {
@@ -34,13 +34,14 @@ export default class Pagination extends Component {
 
   render() {
     const { page, quotes } = this.props;
+    const { pagination, paginationBtnActive, hidden } = styles;
 
     const paginationGroup = this.getPaginationGroup();
 
     const LAST_PAGE = getLastPage(quotes);
 
     return (
-      <div className={styles.pagination}>
+      <div className={pagination}>
         <button onClick={() => this.goToPreviousPage()} disabled={page === 1}>
           PREV
         </button>
@@ -50,9 +51,9 @@ export default class Pagination extends Component {
             onClick={(e) => this.changePage(e)}
             className={
               item === page
-                ? styles['pagination-btn--active']
+                ? paginationBtnActive
                 : item > LAST_PAGE
-                ? styles.hidden
+                ? hidden
                 : null
             }
           >

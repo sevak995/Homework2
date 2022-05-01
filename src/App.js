@@ -1,8 +1,7 @@
-// import './App.css';
 import { Component } from 'react';
-import Pool from './components/Pool';
-import Container from './components/Container';
-import { quotes } from './components/quotesData';
+import Pool from './components/Pool/Pool';
+import Container from './components/Container/Container';
+import { quotes } from './utils/quotesData';
 import { returnMean, search } from './utils/utils';
 import styles from './App.module.css';
 
@@ -64,31 +63,29 @@ export default class App extends Component {
     this.setState({ searchResult: searchResult });
   }
 
-  addCommentHandler(NewCommnet) {
-    console.log(NewCommnet);
-
-    const { id, text, rate } = NewCommnet;
+  addCommentHandler(newComment) {
+    const { id, text, rate } = newComment;
 
     const { quotes } = this.state;
 
-    const updatedQuotes = quotes.map((quote) => {
-      if (quote.id === id) {
-        const { comments } = quote;
+    const updatedQuotes = quotes.map((singleQuote) => {
+      if (singleQuote.id === id) {
+        const { comments } = singleQuote;
         const newId = String(comments.length + 1);
 
         comments.push({ id: newId, text: text, value: rate });
 
-        return { ...quote, comments };
+        return { ...singleQuote, comments };
       } else {
-        return quote;
+        return singleQuote;
       }
     });
 
     this.setState({ quotes: updatedQuotes });
   }
 
-  onAddReplay(replay) {
-    const { text, commentId, quoteId } = replay;
+  onAddReply(reply) {
+    const { text, commentId, quoteId } = reply;
 
     const { quotes } = this.state;
 
@@ -98,12 +95,12 @@ export default class App extends Component {
 
         const updatedComments = comments.map((comment) => {
           if (comment.id === commentId) {
-            if (comment.replays === undefined) {
-              comment.replays = [];
+            if (comment.replys === undefined) {
+              comment.replys = [];
             }
 
-            const newId = comment.replays.length + 1;
-            comment.replays.push({ id: newId, text });
+            const newId = comment.replys.length + 1;
+            comment.replys.push({ id: newId, text });
           }
           return { ...comment };
         });
@@ -118,28 +115,26 @@ export default class App extends Component {
   }
 
   render() {
+    const { searchResult, quotes } = this.state;
+
     return (
       <div className={styles.app}>
         <Pool
-          quotes={
-            this.state.searchResult
-              ? this.state.searchResult
-              : this.state.quotes
-          }
+          quotes={searchResult ? searchResult : quotes}
           query={(query) => this.queryHandler(query)}
           addCommentHandler={(NewCommnet) => this.addCommentHandler(NewCommnet)}
-          onAddReplay={(replay) => this.onAddReplay(replay)}
+          onAddReply={(reply) => this.onAddReply(reply)}
         />
         <Container
           onAdd={(list) => this.addHandler(list)}
-          quotes={this.state.quotes}
+          quotes={quotes}
           onDelete={(id) => this.deleteHandler(id)}
           containerName="list1"
         />
 
         <Container
           onAdd={(list) => this.addHandler(list)}
-          quotes={this.state.quotes}
+          quotes={quotes}
           onDelete={(id) => this.deleteHandler(id)}
           containerName="list2"
         />

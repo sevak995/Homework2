@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Quote from './Quote';
+import Quote from '../Quote/Quote';
 import styles from './Pool.module.css';
-import Search from './Search';
-import Pagination from './Pagination';
-import { getPaginatedQuotes } from '../utils/utils';
+import Search from '../Search/Search';
+import Pagination from '../Pagination/Pagination';
+import { getPaginatedQuotes } from '../../utils/utils';
 
 export default class Pool extends Component {
   constructor(props) {
@@ -32,18 +32,19 @@ export default class Pool extends Component {
     this.props.addCommentHandler(newComment);
   }
 
-  onAddReplay(replay) {
-    this.props.onAddReplay(replay);
+  onAddReply(reply) {
+    this.props.onAddReply(reply);
   }
 
   render() {
     const { currentPage } = this.state;
     const { quotes } = this.props;
+    const { container, quotesList } = styles;
 
     const paginatedQuotes = getPaginatedQuotes(quotes, currentPage);
 
     return (
-      <div className={styles.container}>
+      <div className={container}>
         <Search query={(query) => this.queryHandler(query)} />
         <Pagination
           quotes={quotes}
@@ -51,7 +52,7 @@ export default class Pool extends Component {
           paginate={(page) => this.paginate(page)}
         />
 
-        <ul className={styles.quotesList}>
+        <ul className={quotesList}>
           {paginatedQuotes.map((quote) => {
             return (
               <Quote
@@ -60,7 +61,7 @@ export default class Pool extends Component {
                 addCommentHandler={(newComment) =>
                   this.addCommentHandler(newComment)
                 }
-                onAddReplay={(replay) => this.onAddReplay(replay)}
+                onAddReply={(reply) => this.onAddReply(reply)}
               />
             );
           })}

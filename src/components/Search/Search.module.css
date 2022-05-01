@@ -1,15 +1,15 @@
-.search-form {
+.searchForm {
   align-self: center;
   padding-top: 2rem;
 }
 
-.search-input {
+.searchInput {
   padding: 2rem 10rem;
   border-radius: 6px;
   border: none;
   font-size: 2rem;
 }
 
-.search-input:focus-visible {
+.searchInput:focus-visible {
   outline: none;
 }

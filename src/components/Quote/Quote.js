@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import NewCommnet from './NewComment';
-import Comment from './Comment';
+import NewCommnet from '../NewComment/NewComment';
+import Comment from '../Comment/Comment';
 import styles from './Quote.module.css';
 
 export default class Quote extends Component {
@@ -21,42 +21,49 @@ export default class Quote extends Component {
     });
   }
 
-  onAddReplay(replay) {
+  onAddReply(reply) {
     const { quote } = this.props;
 
-    this.props.onAddReplay({ ...replay, quoteId: quote.id });
+    this.props.onAddReply({ ...reply, quoteId: quote.id });
   }
 
   render() {
     const { text, author, comments, sectionName, id } = this.props.quote;
     const { showForm } = this.state;
+    const {
+      cart,
+      selected,
+      quoteInfo,
+      quoteText,
+      author: authorStyle,
+      comments: commentsStyle,
+      btn,
+      btnYellow,
+    } = styles;
 
-    const ListClass =
-      sectionName === 'main'
-        ? styles.cart
-        : styles.cart + ' ' + styles.selected;
+    const ListClass = sectionName === 'main' ? cart : cart + ' ' + selected;
 
     return (
       <li className={ListClass}>
-        <div className={styles['quote-info']}>
-          <div className={styles['quote-text']}>{text}</div>
-          <div className={styles.author}>{author}</div>
+        <div className={quoteInfo}>
+          <div className={quoteText}>{text}</div>
+          <div className={authorStyle}>{author}</div>
         </div>
         <div>Comments</div>
-        <div className={styles.comments}>
+        <div className={commentsStyle}>
           {comments.map((comment) => {
             return (
               <Comment
                 key={comment.id}
                 comment={comment}
-                onAddReplay={(replay) => this.onAddReplay(replay)}
+                onAddReply={(reply) => this.onAddReply(reply)}
               />
             );
           })}
         </div>
         <button
           onClick={() => this.toggleForm(id)}
-          className={styles.btn + ' ' + styles['btn-yellow']}
+          className={btn + ' ' + btnYellow}
         >
           Add new comment
         </button>

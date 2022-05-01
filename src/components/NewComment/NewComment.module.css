@@ -1,0 +1,58 @@
+.newCommentForm {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.rateInput {
+  height: 4rem;
+  width: 8rem;
+  background-color: rgb(235, 235, 235);
+  border-radius: 8px;
+  font-size: 2rem;
+  padding: 0rem;
+}
+
+.rateLabel {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  padding: 2rem;
+  font-weight: bold;
+  background-color: #162b2b;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: orange;
+}
+
+.btnYellow {
+  background-color: #edca8a;
+  color: #162b2b;
+  padding: 0.8rem;
+}
+
+.newCommentInput {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.textarea {
+  width: 85%;
+  height: 8rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  resize: none;
+  background-color: rgb(235, 235, 235);
+}

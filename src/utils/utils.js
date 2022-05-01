@@ -1,4 +1,5 @@
 import { QUOTES_PER_PAGE } from '../config/config';
+import styles from '../components/Comment/Comment.module.css';
 
 export const returnMean = function (input) {
   const sum = input.reduce(
@@ -6,9 +7,7 @@ export const returnMean = function (input) {
     0
   );
 
-  const mean = sum / input.length;
-
-  return mean;
+  return sum / input.length;
 };
 
 export function getPaginatedQuotes(quotes, currentPage) {
@@ -35,4 +34,12 @@ export function search(query, quotes) {
   });
 
   return searchResult;
+}
+
+export function returnStar(key) {
+  return (
+    <div className={styles.star} key={key}>
+      &#9733;
+    </div>
+  );
 }

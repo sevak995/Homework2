@@ -8,32 +8,37 @@ export default class NewCommnet extends Component {
     const { value: text } = event.target[0];
     const { value: rate } = event.target[1];
 
-    console.log(rate);
+    const newComment = { id: quoteId, text, rate: Number(rate) };
 
-    const NewComment = { id: quoteId, text, rate };
-
-    this.props.addComment(NewComment);
+    this.props.addComment(newComment);
   }
 
   render() {
+    const {
+      newCommentForm,
+      newCommentInput,
+      textarea,
+      rateIabel,
+      rateInput,
+      btn,
+      btnYellow,
+    } = styles;
+
     return (
       <form onSubmit={(event) => this.onAddComment(event)}>
-        <div className={styles['newComment-form']}>
-          <div className={styles['newComment-input']}>
-            <textarea placeholder="Text" className={styles.textarea}></textarea>
-            <div className={styles['rate-label']}>Rate</div>
+        <div className={newCommentForm}>
+          <div className={newCommentInput}>
+            <textarea placeholder="Text" className={textarea}></textarea>
+            <div className={rateIabel}>Rate</div>
             <input
-              className={styles['rate-input']}
+              className={rateInput}
               name="rate"
               type="number"
               min="0"
               max="10"
             ></input>
           </div>
-          <button
-            className={styles['btn'] + ' ' + styles['btn-yellow']}
-            type="submit"
-          >
+          <button className={btn + ' ' + btnYellow} type="submit">
             Submit
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import SelectedQuote from './SelectedQuote';
+import SelectedQuote from '../SelectedQuote/SelectedQuote';
 import styles from './Container.module.css';
 
 export default class Container extends Component {
@@ -28,48 +28,49 @@ export default class Container extends Component {
 
   render() {
     const { containerName, quotes } = this.props;
+    const { sorted } = this.state;
+    const { btn, btnSorted, container, btns, quotesList } = styles;
 
     let selectedQuotes;
     const unsortedQuotes = quotes.filter((quote) => {
       return quote.sectionName === containerName;
     });
 
-    if (this.state.sorted === null) {
+    if (sorted === null) {
       selectedQuotes = unsortedQuotes;
-    } else if (this.state.sorted === 'asc') {
-      const sortedUp = unsortedQuotes.sort((a, b) => {
+    } else if (sorted === 'asc') {
+      const sortedAsc = unsortedQuotes.sort((a, b) => {
         return b.mean - a.mean;
       });
-      selectedQuotes = sortedUp;
+      selectedQuotes = sortedAsc;
     } else {
-      const sortedDown = unsortedQuotes.sort((a, b) => {
+      const sortedDesc = unsortedQuotes.sort((a, b) => {
         return a.mean - b.mean;
       });
-      selectedQuotes = sortedDown;
+      selectedQuotes = sortedDesc;
     }
 
-    const sortBtnStyle = this.state.sorted
-      ? styles.btn
-      : styles.btn + ' ' + styles['btn-sorted'];
+    const sortBtnStyle = sorted === null ? btn : btn + ' ' + btnSorted;
+
     const sortBtnContent =
-      this.state.sorted === 'desc'
+      sorted === 'desc'
         ? 'Sorted lowest to highest'
-        : this.state.sorted === 'asc'
+        : sorted === 'asc'
         ? 'Sorted highest to lowest'
         : 'Unsorted !';
 
     return (
-      <div className={styles.container}>
-        <div className={styles.btns}>
+      <div className={container}>
+        <div className={btns}>
           <button className={sortBtnStyle} onClick={() => this.onSort()}>
             {sortBtnContent}
           </button>
-          <button className={styles.btn} onClick={() => this.addHandler()}>
+          <button className={btn} onClick={() => this.addHandler()}>
             Add to {containerName}
           </button>
         </div>
         <div>
-          <ul className={styles['quotes-list']}>
+          <ul className={quotesList}>
             {selectedQuotes.map((quote) => {
               return (
                 <SelectedQuote

@@ -27,7 +27,7 @@
   background-color: orange;
 }
 
-.btn-yellow {
+.btnYellow {
   background-color: #edca8a;
   color: #162b2b;
   padding: 0.8rem;
@@ -35,13 +35,13 @@
   align-self: center;
 }
 
-.quote-info {
+.quoteInfo {
   border: 2px solid #edca8a;
   border-radius: 10px;
   padding: 2rem;
 }
 
-.quote-text {
+.quoteText {
   font-size: 2rem;
   font-weight: bold;
 }
