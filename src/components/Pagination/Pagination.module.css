@@ -1,0 +1,30 @@
+.pagination {
+  align-self: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination button,
+.pagination button:link,
+.pagination button:visited {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  border: 2px solid #162b2b;
+  font-size: 1.6rem;
+}
+
+.pagination button:hover,
+.pagination button:active {
+  background-color: orange;
+}
+
+.paginationBtnActive {
+  background-color: #162b2b;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}

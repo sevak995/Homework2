@@ -1,0 +1,37 @@
+.replyForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  padding: 2rem;
+  font-weight: bold;
+  background-color: #162b2b;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: orange;
+}
+
+.btnYellow {
+  background-color: #edca8a;
+  color: #162b2b;
+  padding: 0.8rem;
+}
+
+.textarea {
+  width: 85%;
+  height: 8rem;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1.6rem;
+  resize: none;
+  background-color: rgb(235, 235, 235);
+}
