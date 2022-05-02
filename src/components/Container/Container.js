@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import SelectedQuote from '../SelectedQuote/SelectedQuote';
 import styles from './Container.module.css';
+import { QuoteContext } from '../../Context/contex';
 
 export default class Container extends Component {
   constructor(props) {
@@ -8,8 +9,11 @@ export default class Container extends Component {
     this.state = { sorted: null };
   }
 
+  static contextType = QuoteContext;
+
   addHandler() {
-    this.props.onAdd(this.props.containerName);
+    const { addHandler } = this.context;
+    addHandler(this.props.containerName);
   }
 
   onSort() {
@@ -22,12 +26,9 @@ export default class Container extends Component {
     });
   }
 
-  onDelete(id) {
-    this.props.onDelete(id);
-  }
-
   render() {
-    const { containerName, quotes } = this.props;
+    const { containerName } = this.props;
+    const { quotes } = this.context;
     const { sorted } = this.state;
     const { btn, btnSorted, container, btns, quotesList } = styles;
 
@@ -72,13 +73,7 @@ export default class Container extends Component {
         <div>
           <ul className={quotesList}>
             {selectedQuotes.map((quote) => {
-              return (
-                <SelectedQuote
-                  quote={quote}
-                  key={quote.id}
-                  onDelete={(id) => this.onDelete(id)}
-                />
-              );
+              return <SelectedQuote quote={quote} key={quote.id} />;
             })}
           </ul>
         </div>

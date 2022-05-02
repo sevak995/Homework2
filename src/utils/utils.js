@@ -43,3 +43,66 @@ export function returnStar(key) {
     </div>
   );
 }
+
+export function setSectionNameToMain(quotes, id) {
+  return quotes.map((quote) => {
+    if (quote.id === id) {
+      return { ...quote, sectionName: 'main' };
+    } else {
+      return quote;
+    }
+  });
+}
+
+export function addComment(quotes, newComment) {
+  const { id, text, rate } = newComment;
+
+  return quotes.map((singleQuote) => {
+    if (singleQuote.id === id) {
+      const { comments } = singleQuote;
+      const newId = String(comments.length + 1);
+
+      const updatedcomments = [
+        ...comments,
+        { id: newId, text: text, value: rate },
+      ];
+
+      return { ...singleQuote, comments: updatedcomments };
+    } else {
+      return singleQuote;
+    }
+  });
+}
+
+export function addReply(quotes, reply) {
+  const { quoteId, commentId, text } = reply;
+
+  return quotes.map((quote) => {
+    if (quote.id === quoteId) {
+      const { comments } = quote;
+
+      const updatedComments = comments.map((comment) => {
+        const { id, replys } = comment;
+
+        if (id === commentId) {
+          if (replys === undefined) {
+            comment.replys = [];
+          }
+
+          const newId = comment.replys.length + 1;
+          const updatedReplys = replys
+            ? [...replys, { id: newId, text }]
+            : [{ id: newId, text }];
+          const updatedComment = { ...comment, replys: updatedReplys };
+          return { ...updatedComment };
+        } else {
+          return comment;
+        }
+      });
+
+      return { ...quote, comments: updatedComments };
+    } else {
+      return quote;
+    }
+  });
+}

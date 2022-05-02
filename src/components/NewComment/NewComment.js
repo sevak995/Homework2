@@ -1,7 +1,10 @@
 import { Component } from 'react';
 import styles from './NewComment.module.css';
+import { QuoteContext } from '../../Context/contex';
 
 export default class NewCommnet extends Component {
+  static contextType = QuoteContext;
+
   onAddComment(event) {
     event.preventDefault();
     const { quoteId } = this.props;
@@ -10,7 +13,9 @@ export default class NewCommnet extends Component {
 
     const newComment = { id: quoteId, text, rate: Number(rate) };
 
-    this.props.addComment(newComment);
+    const { addCommentHandler } = this.context;
+
+    addCommentHandler(newComment);
   }
 
   render() {

@@ -1,9 +1,13 @@
 import { Component } from 'react';
 import styles from './Search.module.css';
+import { QuoteContext } from '../../Context/contex';
 
 export default class Search extends Component {
+  static contextType = QuoteContext;
+
   searchHandler(query) {
-    this.props.query(query);
+    const { searchHandler } = this.context;
+    searchHandler(query);
   }
 
   render() {

@@ -2,23 +2,26 @@ import { Component } from 'react';
 import { PAGE_LIMIT_IN_GROUP } from '../../config/config';
 import { getLastPage } from '../../utils/utils';
 import styles from './Pagination.module.css';
+import { QuoteContext } from '../../Context/contex';
 
 export default class Pagination extends Component {
+  static contextType = QuoteContext;
+
   goToNextPage() {
-    this.props.paginate('next');
+    this.context.paginate('next');
   }
 
   goToPreviousPage() {
-    this.props.paginate('prev');
+    this.context.paginate('prev');
   }
 
   changePage(event) {
     const pageNumber = Number(event.target.textContent);
-    this.props.paginate(pageNumber);
+    this.context.paginate(pageNumber);
   }
 
   getPaginationGroup() {
-    const { page } = this.props;
+    const { page } = this.context;
 
     const start =
       Math.floor((page - 1) / PAGE_LIMIT_IN_GROUP) * PAGE_LIMIT_IN_GROUP;
@@ -33,7 +36,7 @@ export default class Pagination extends Component {
   }
 
   render() {
-    const { page, quotes } = this.props;
+    const { page, quotes } = this.context;
     const { pagination, paginationBtnActive, hidden } = styles;
 
     const paginationGroup = this.getPaginationGroup();

@@ -2,29 +2,26 @@ import { Component } from 'react';
 import NewCommnet from '../NewComment/NewComment';
 import Comment from '../Comment/Comment';
 import styles from './Quote.module.css';
+import { QuoteContext } from '../../Context/contex';
 
 export default class Quote extends Component {
   constructor(props) {
     super(props);
     this.state = { showForm: false };
   }
-
-  addCommentHandler(newComment) {
-    this.props.addCommentHandler(newComment);
-    this.setState({ showForm: false });
-  }
+  static contextType = QuoteContext;
 
   toggleForm(id) {
-    console.log(id);
     this.setState((prev) => {
       return { showForm: !prev.showForm };
     });
   }
 
   onAddReply(reply) {
+    const { onAddReply } = this.context;
     const { quote } = this.props;
 
-    this.props.onAddReply({ ...reply, quoteId: quote.id });
+    onAddReply({ ...reply, quoteId: quote.id });
   }
 
   render() {
@@ -67,12 +64,7 @@ export default class Quote extends Component {
         >
           Add new comment
         </button>
-        {showForm && (
-          <NewCommnet
-            quoteId={id}
-            addComment={(newComment) => this.addCommentHandler(newComment)}
-          />
-        )}
+        {showForm && <NewCommnet quoteId={id} />}
       </li>
     );
   }

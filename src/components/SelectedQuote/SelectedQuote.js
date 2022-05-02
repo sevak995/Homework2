@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import styles from './SelectedQuote.module.css';
 import { returnStar } from '../../utils/utils';
+import { QuoteContext } from '../../Context/contex';
 
 export default class SelectedQuote extends Component {
+  static contextType = QuoteContext;
   onDelete(id) {
-    this.props.onDelete(id);
+    const { deleteHandler } = this.context;
+    deleteHandler(id);
   }
 
   render() {
