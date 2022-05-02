@@ -36,6 +36,7 @@ export default class Comment extends Component {
       commentGreen,
       commentYellow,
       commentRed,
+      starRow,
     } = styles;
 
     const commentStyles =
@@ -51,17 +52,15 @@ export default class Comment extends Component {
       <div className={commentStyles}>
         <div className={commentInfo}>
           <div>{text}</div>
-          {
-            <div className={styles.starRow}>
-              {stars.map((star, i) => star(i))}
-            </div>
-          }
-          <button
-            onClick={() => this.toggleForm()}
-            className={btn + ' ' + btnYellow}
-          >
-            Reply
-          </button>
+          <div className={starRow}>
+            {<div className={starRow}>{stars.map((star, i) => star(i))}</div>}
+            <button
+              onClick={() => this.toggleForm()}
+              className={btn + ' ' + btnYellow}
+            >
+              Reply
+            </button>
+          </div>
         </div>
 
         {replys && (

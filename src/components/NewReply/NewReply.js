@@ -16,7 +16,7 @@ export default class NewReply extends Component {
     return (
       <form onSubmit={(event) => this.onAddReply(event)} className={replyForm}>
         <div>
-          <textarea className={textarea} placeholder="Text"></textarea>
+          <textarea className={textarea} placeholder="Text" required></textarea>
         </div>
         <button className={btn + ' ' + btnYellow} type="submit">
           Submit

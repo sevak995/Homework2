@@ -28,7 +28,11 @@ export default class NewCommnet extends Component {
       <form onSubmit={(event) => this.onAddComment(event)}>
         <div className={newCommentForm}>
           <div className={newCommentInput}>
-            <textarea placeholder="Text" className={textarea}></textarea>
+            <textarea
+              placeholder="Text"
+              className={textarea}
+              required
+            ></textarea>
             <div className={rateIabel}>Rate</div>
             <input
               className={rateInput}
@@ -36,6 +40,7 @@ export default class NewCommnet extends Component {
               type="number"
               min="0"
               max="10"
+              required
             ></input>
           </div>
           <button className={btn + ' ' + btnYellow} type="submit">

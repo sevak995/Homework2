@@ -67,4 +67,5 @@
 
 .starRow {
   display: flex;
+  gap: 3px;
 }

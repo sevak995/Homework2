@@ -22,7 +22,7 @@ export default class SelectedQuote extends Component {
 
     return (
       <li className={cart}>
-        {<div className={starRow}>{stars.map((star) => star())}</div>}
+        {<div className={starRow}>{stars.map((star, i) => star(i))}</div>}
         <div className={meanStyles}>Mean: {mean.toFixed(2)}</div>
         <button
           className={btn + ' ' + btnYellow}
