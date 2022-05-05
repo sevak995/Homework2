@@ -106,3 +106,9 @@ export function addReply(quotes, reply) {
     }
   });
 }
+
+export function toggleForm() {
+  this.setState((prev) => {
+    return { showForm: !prev.showForm };
+  });
+}

@@ -4,11 +4,8 @@ import Comment from '../Comment/Comment';
 import styles from './Quote.module.css';
 
 export default class Quote extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    if (
-      nextProps.quote.comments !== this.props.quote.comments ||
-      nextState !== this.state
-    ) {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.quote.comments !== this.props.quote.comments) {
       return true;
     }
 

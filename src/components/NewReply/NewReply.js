@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import styles from './NewReply.module.css';
 import { QuoteContext } from '../../Context/contex';
+import { toggleForm } from '../../utils/utils';
 
 export default class NewReply extends Component {
   constructor(props) {
     super(props);
-    this.state = { showReplyForm: false };
+    this.state = { showForm: false };
+    this.toggleForm = toggleForm.bind(this);
   }
   static contextType = QuoteContext;
 
@@ -20,15 +22,9 @@ export default class NewReply extends Component {
     this.toggleForm();
   }
 
-  toggleForm() {
-    this.setState((prev) => {
-      return { showReplyForm: !prev.showReplyForm };
-    });
-  }
-
   render() {
     const { replyForm, textarea, btn, btnYellow, btn_submit } = styles;
-    const { showReplyForm } = this.state;
+    const { showForm } = this.state;
 
     return (
       <>
@@ -39,7 +35,7 @@ export default class NewReply extends Component {
           Reply
         </button>
 
-        {showReplyForm && (
+        {showForm && (
           <form
             onSubmit={(event) => this.onAddReply(event)}
             className={replyForm}

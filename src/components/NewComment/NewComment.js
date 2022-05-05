@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import styles from './NewComment.module.css';
 import { QuoteContext } from '../../Context/contex';
+import { toggleForm } from '../../utils/utils';
 
 export default class NewCommnet extends Component {
   constructor(props) {
     super(props);
     this.state = { showForm: false };
+    this.toggleForm = toggleForm.bind(this);
   }
 
   static contextType = QuoteContext;
@@ -22,12 +24,6 @@ export default class NewCommnet extends Component {
 
     addCommentHandler(newComment);
     this.toggleForm();
-  }
-
-  toggleForm() {
-    this.setState((prev) => {
-      return { showForm: !prev.showForm };
-    });
   }
 
   render() {
