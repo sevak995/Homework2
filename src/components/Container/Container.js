@@ -26,6 +26,11 @@ export default class Container extends Component {
     });
   }
 
+  onDelete(id) {
+    const { deleteHandler } = this.context;
+    deleteHandler(id);
+  }
+
   render() {
     const { containerName } = this.props;
     const { quotes } = this.context;
@@ -73,7 +78,13 @@ export default class Container extends Component {
         <div>
           <ul className={quotesList}>
             {selectedQuotes.map((quote) => {
-              return <SelectedQuote quote={quote} key={quote.id} />;
+              return (
+                <SelectedQuote
+                  quote={quote}
+                  key={quote.id}
+                  onDelete={(id) => this.onDelete(id)}
+                />
+              );
             })}
           </ul>
         </div>

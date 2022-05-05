@@ -2,31 +2,21 @@ import { Component } from 'react';
 import NewCommnet from '../NewComment/NewComment';
 import Comment from '../Comment/Comment';
 import styles from './Quote.module.css';
-import { QuoteContext } from '../../Context/contex';
 
 export default class Quote extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showForm: false };
-  }
-  static contextType = QuoteContext;
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      nextProps.quote.comments !== this.props.quote.comments ||
+      nextState !== this.state
+    ) {
+      return true;
+    }
 
-  toggleForm(id) {
-    this.setState((prev) => {
-      return { showForm: !prev.showForm };
-    });
-  }
-
-  onAddReply(reply) {
-    const { onAddReply } = this.context;
-    const { quote } = this.props;
-
-    onAddReply({ ...reply, quoteId: quote.id });
+    return false;
   }
 
   render() {
     const { text, author, comments, sectionName, id } = this.props.quote;
-    const { showForm } = this.state;
     const {
       cart,
       selected,
@@ -34,8 +24,6 @@ export default class Quote extends Component {
       quoteText,
       author: authorStyle,
       comments: commentsStyle,
-      btn,
-      btnYellow,
     } = styles;
 
     const ListClass = sectionName === 'main' ? cart : cart + ' ' + selected;
@@ -49,22 +37,10 @@ export default class Quote extends Component {
         <div>Comments</div>
         <div className={commentsStyle}>
           {comments.map((comment) => {
-            return (
-              <Comment
-                key={comment.id}
-                comment={comment}
-                onAddReply={(reply) => this.onAddReply(reply)}
-              />
-            );
+            return <Comment key={comment.id} comment={comment} quoteId={id} />;
           })}
         </div>
-        <button
-          onClick={() => this.toggleForm(id)}
-          className={btn + ' ' + btnYellow}
-        >
-          Add new comment
-        </button>
-        {showForm && <NewCommnet quoteId={id} />}
+        <NewCommnet quoteId={id} />
       </li>
     );
   }

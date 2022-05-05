@@ -1,16 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import styles from './SelectedQuote.module.css';
 import { returnStar } from '../../utils/utils';
 import { QuoteContext } from '../../Context/contex';
 
 export default class SelectedQuote extends Component {
-  static contextType = QuoteContext;
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.quote !== this.props.quote) {
+      return true;
+    }
+
+    return false;
+  }
+
   onDelete(id) {
-    const { deleteHandler } = this.context;
-    deleteHandler(id);
+    this.props.onDelete(id);
   }
 
   render() {
+    console.log('SelectedQuote');
     const { id, text, author, mean } = this.props.quote;
     const {
       cart,

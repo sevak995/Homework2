@@ -6,15 +6,12 @@ import Reply from '../Reply/Reply';
 import { returnStar } from '../../utils/utils';
 
 export default class Comment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showReplyForm: false };
-  }
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.comment !== this.props.comment) {
+      return true;
+    }
 
-  toggleForm() {
-    this.setState((prev) => {
-      return { showReplyForm: !prev.showReplyForm };
-    });
+    return false;
   }
 
   onAddReply(reply) {
@@ -23,14 +20,12 @@ export default class Comment extends Component {
   }
 
   render() {
+    const { quoteId } = this.props;
     const { text, value, id, replys } = this.props.comment;
-    const { showReplyForm } = this.state;
 
     const {
       comment,
       commentInfo,
-      btn,
-      btnYellow,
       replysForm,
       replysList,
       commentGreen,
@@ -54,15 +49,8 @@ export default class Comment extends Component {
           <div>{text}</div>
           <div className={starRow}>
             {<div className={starRow}>{stars.map((star, i) => star(i))}</div>}
-            <button
-              onClick={() => this.toggleForm()}
-              className={btn + ' ' + btnYellow}
-            >
-              Reply
-            </button>
           </div>
         </div>
-
         {replys && (
           <div className={replysForm}>
             <div>Replys</div>
@@ -73,10 +61,7 @@ export default class Comment extends Component {
             </div>
           </div>
         )}
-
-        {showReplyForm && (
-          <NewReply onAddReply={(reply) => this.onAddReply(reply)} id={id} />
-        )}
+        <NewReply commentId={id} quoteId={quoteId} />
       </div>
     );
   }

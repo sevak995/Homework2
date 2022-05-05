@@ -23,16 +23,7 @@ export default class Pool extends Component {
         <Pagination />
         <ul className={quotesList}>
           {paginatedQuotes.map((quote) => {
-            return (
-              <Quote
-                quote={quote}
-                key={quote.id}
-                addCommentHandler={(newComment) =>
-                  this.addCommentHandler(newComment)
-                }
-                onAddReply={(reply) => this.onAddReply(reply)}
-              />
-            );
+            return <Quote quote={quote} key={quote.id} />;
           })}
         </ul>
       </div>

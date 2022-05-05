@@ -13,6 +13,7 @@
   color: white;
   border-radius: 8px;
   border: none;
+  width: 30%;
 }
 
 .btn:hover,
@@ -24,6 +25,10 @@
   background-color: #edca8a;
   color: #162b2b;
   padding: 0.8rem;
+}
+
+.btn_submit {
+  align-self: flex-end;
 }
 
 .textarea {
