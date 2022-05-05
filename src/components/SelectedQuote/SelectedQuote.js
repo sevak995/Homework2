@@ -1,7 +1,6 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import styles from './SelectedQuote.module.css';
 import { returnStar } from '../../utils/utils';
-import { QuoteContext } from '../../Context/contex';
 
 export default class SelectedQuote extends Component {
   shouldComponentUpdate(nextProps) {
