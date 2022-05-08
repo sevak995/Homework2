@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { schema } from '../Schema/Schema';
+import { useValidate } from '../../Hook/useValidate';
 import { getInputsFromEvent } from '../../helpers/helpers';
 import Input from '../Input/Input';
 import styles from './Form.module.css';
@@ -14,7 +13,7 @@ function Form() {
     { name: 'PhoneNumbers', type: 'phoneNumbers' },
   ];
 
-  const [validationState, setValidationState] = useState({});
+  const [validationState, validate] = useValidate();
   const { form, btn } = styles;
 
   function onSubmit(event) {
@@ -22,9 +21,7 @@ function Form() {
 
     const AllInputs = getInputsFromEvent(event);
 
-    const result = schema.validate(AllInputs);
-
-    setValidationState(result);
+    validate(AllInputs);
   }
 
   return (
