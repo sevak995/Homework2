@@ -1,6 +1,8 @@
-import { useValidate } from '../../Hook/useValidate';
-import { getInputsFromEvent } from '../../helpers/helpers';
-import Input from '../Input/Input';
+import { useValidate } from '../../Hooks/use-validate';
+import { getInputsValueFromEvent } from '../../helpers';
+import { useRef } from 'react';
+import Input from '../Input';
+import SuccessMessage from '../SuccessMessage';
 import styles from './Form.module.css';
 
 function Form() {
@@ -15,17 +17,23 @@ function Form() {
 
   const [validationState, validate] = useValidate();
   const { form, btn } = styles;
+  const formRef = useRef();
 
   function onSubmit(event) {
     event.preventDefault();
 
-    const AllInputs = getInputsFromEvent(event);
+    const inputsValue = getInputsValueFromEvent(event);
 
-    validate(AllInputs);
+    validate(inputsValue);
+  }
+
+  if (validationState.formIsValid) {
+    formRef.current.reset();
   }
 
   return (
-    <form onSubmit={(e) => onSubmit(e)} className={form}>
+    <form onSubmit={(e) => onSubmit(e)} className={form} ref={formRef}>
+      {validationState.formIsValid && <SuccessMessage />}
       {inputs.map((input, i) => {
         const { name, type } = input;
         return (

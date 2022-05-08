@@ -1,4 +1,4 @@
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
 import styles from './Input.module.css';
 import { useRef } from 'react';
 

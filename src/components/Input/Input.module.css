@@ -1,6 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
+  gap: 5px;
 }
 
 .form_label {
@@ -32,5 +33,5 @@
 }
 
 .form_input__error {
-  background-color: rgb(251 156 156);
+  background-color: rgb(247 221 221);
 }

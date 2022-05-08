@@ -62,11 +62,11 @@ export default class Schema {
   }
 
   phone(value, message) {
-    return value.length === 8
+    return value.length === 8 && Number.isInteger(+value)
       ? { valid: true, error: null }
       : {
           valid: false,
-          error: message ?? `Invalid phone number !`,
+          error: message ?? `Invalid phone number, must be 8 numbers!`,
         };
   }
 
