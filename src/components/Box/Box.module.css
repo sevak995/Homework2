@@ -1,0 +1,15 @@
+.box {
+  border: 5px dashed black;
+}
+
+.droppable {
+  background-color: rgb(126, 128, 128);
+}
+
+.dropped {
+  background-color: rgba(34, 42, 49, 0.233);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,10 @@
+.element {
+  padding: 16px 32px;
+  background-color: rgb(194, 191, 191);
+  font-size: 1.6rem;
+  border-radius: 10px;
+}
+
+.element:hover {
+  background-color: gray;
+}

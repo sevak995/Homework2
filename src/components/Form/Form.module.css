@@ -1,0 +1,26 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.form_outer {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  background-color: rgb(147, 247, 17);
+  font-size: 1rem;
+  border-radius: 12px;
+  border: none;
+  color: black;
+  height: 100%;
+  justify-self: center;
+  align-self: center;
+}
+
+.btn:hover {
+  background-color: rgb(83, 143, 4);
+}

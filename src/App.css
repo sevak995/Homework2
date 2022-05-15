@@ -1,0 +1,7 @@
+.App {
+  background-color: rgba(214, 212, 212, 0.568);
+  display: flex;
+  gap: 5rem;
+  padding: 5rem;
+  height: 100vh;
+}
