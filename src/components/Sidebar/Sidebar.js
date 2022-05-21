@@ -1,16 +1,16 @@
 import styles from './Sidebar.module.css';
 import Label from '../Label/Label';
-import { useContext } from 'react';
-import { ElementsContext } from '../../Context/ElementsContext';
+import { useDispatch } from 'react-redux';
+import { elementActions } from '../../store/elements';
 import { sidebarElements } from '../../Helpers/config';
 
 const Sidebar = () => {
-  const { dispatch } = useContext(ElementsContext);
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.flex}>
       <button
-        onClick={() => dispatch({ type: 'reset' })}
+        onClick={() => dispatch(elementActions.reset())}
         className={styles.btn}
       >
         RESET

@@ -1,12 +1,27 @@
-import { useContext } from 'react';
-import { ElementsContext } from '../../Context/ElementsContext';
 import styles from './Box.module.css';
 import Dropped from '../Dropped/Dropped';
+import { elements } from '../../Helpers/elements';
+import { useDispatch, useSelector } from 'react-redux';
+import { elementActions } from '../../store/elements';
 
-export default function Box({ id }) {
-  const { elementsState, dispatch } = useContext(ElementsContext);
+export default function Box({ id, row, col }) {
+  const dispatch = useDispatch();
 
-  const isDropped = Boolean(elementsState.droppedElements[id]);
+  const element = useSelector((state) => state.elements.boxes[row][col]);
+  const draggedElement = useSelector((state) => state.elements.draggedElement);
+
+  let attributes = [];
+
+  if (id !== 'empty') {
+    const { attributes: attr } = elements.find((el) => el.tag === element);
+    attributes = attr;
+  }
+
+  const customAttributes = ['label', 'width'];
+
+  const allAttributes = [...attributes, ...customAttributes];
+
+  const isDropped = Boolean(id !== 'empty');
 
   function onDragEnter(event) {
     event.preventDefault();
@@ -46,27 +61,30 @@ export default function Box({ id }) {
 
     const actionType = event.type;
 
-    const boxName = event.target.id;
+    const boxData = { boxName: event.target.id, row, col };
 
-    dispatch({ type: actionType, boxName });
+    dispatch(elementActions.drop({ type: actionType, boxData }));
   }
 
   return (
-    <div
-      id={id}
-      onDragEnter={onDragEnter}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      className={
-        isDropped
-          ? styles.dropped
-          : elementsState.draggedElement
-          ? styles.box
-          : null
-      }
-    >
-      {isDropped && <Dropped box={id} />}
-    </div>
+    <>
+      {id && (
+        <div
+          id={id}
+          onDragEnter={onDragEnter}
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+          onDrop={onDrop}
+          className={
+            isDropped ? styles.dropped : draggedElement ? styles.box : null
+          }
+        >
+          {isDropped && (
+            <Dropped element={element} allAttributes={allAttributes} />
+          )}
+          {id}
+        </div>
+      )}
+    </>
   );
 }

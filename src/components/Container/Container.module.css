@@ -2,7 +2,10 @@
   background-color: rgb(196, 193, 193);
   border-radius: 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr); */
+  justify-content: center;
+  align-items: center;
   width: 80%;
   gap: 2.5rem;
   padding: 2rem;

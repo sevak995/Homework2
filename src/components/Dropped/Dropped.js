@@ -1,22 +1,10 @@
-import { useContext, useState } from 'react';
-import { ElementsContext } from '../../Context/ElementsContext';
-import { elements } from '../../Helpers/elements';
+import { useState } from 'react';
 import Form from '../Form/Form';
 import Element from '../Element/Element';
 import styles from './Dropped.module.css';
 
-const Dropped = ({ box }) => {
+const Dropped = ({ element, allAttributes }) => {
   const [props, setProps] = useState({});
-
-  const { elementsState } = useContext(ElementsContext);
-
-  const element = elementsState.droppedElements[box];
-
-  const { attributes } = elements.find((el) => el.tag === element);
-
-  const customAttributes = ['label', 'width'];
-
-  const allAttributes = [...attributes, ...customAttributes];
 
   return (
     <div className={styles.element}>

@@ -1,19 +1,18 @@
-import { ElementsContext } from '../../Context/ElementsContext';
-import { useContext } from 'react';
 import styles from './Label.module.css';
+import { useDispatch } from 'react-redux';
+import { elementActions } from '../../store/elements';
 
 export default function Label({ name }) {
-  const { dispatch } = useContext(ElementsContext);
+  const dispatch = useDispatch();
 
   function onDragStart(event) {
     const elementType = event.target.innerText;
-    const actionType = event.type;
-    dispatch({ type: actionType, elementType });
+    dispatch(elementActions.dragstart({ elementType }));
   }
 
   function onDragEnd(event) {
     event.preventDefault();
-    dispatch({ type: event.type });
+    dispatch(elementActions.dragend());
   }
 
   return (
