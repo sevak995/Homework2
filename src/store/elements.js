@@ -35,6 +35,7 @@ const elementSlice = createSlice({
     redo(state) {
       if (state.step > 0) {
         state.step--;
+        state.boxes.pop();
       }
     },
 
