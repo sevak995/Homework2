@@ -7,12 +7,16 @@ import { elementActions } from '../../store/elements';
 export default function Box({ id, row, col }) {
   const dispatch = useDispatch();
 
-  const element = useSelector((state) => state.elements.boxes[row][col]);
+  const currentStep = useSelector((state) => state.elements.step);
+  const element = useSelector(
+    (state) => state.elements.boxes[currentStep][row][col]
+  );
   const draggedElement = useSelector((state) => state.elements.draggedElement);
 
   let attributes = [];
 
   if (id !== 'empty') {
+    // console.log(id);
     const { attributes: attr } = elements.find((el) => el.tag === element);
     attributes = attr;
   }
@@ -29,8 +33,6 @@ export default function Box({ id, row, col }) {
     if (isDropped) {
       return;
     }
-
-    event.target.className = styles.droppable;
   }
 
   function onDragOver(event) {
@@ -47,7 +49,6 @@ export default function Box({ id, row, col }) {
     if (isDropped) {
       return;
     }
-    event.target.className = styles.box;
   }
 
   function onDrop(event) {
@@ -56,8 +57,6 @@ export default function Box({ id, row, col }) {
     if (isDropped) {
       return;
     }
-
-    event.target.className = styles.dropped;
 
     const actionType = event.type;
 
@@ -76,13 +75,16 @@ export default function Box({ id, row, col }) {
           onDragLeave={onDragLeave}
           onDrop={onDrop}
           className={
-            isDropped ? styles.dropped : draggedElement ? styles.box : null
+            isDropped
+              ? styles.dropped
+              : draggedElement
+              ? styles.box
+              : styles.def
           }
         >
           {isDropped && (
             <Dropped element={element} allAttributes={allAttributes} />
           )}
-          {id}
         </div>
       )}
     </>

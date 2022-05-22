@@ -1,9 +1,8 @@
 .container {
   background-color: rgb(196, 193, 193);
   border-radius: 10px;
-  display: grid;
-  /* grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr); */
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 80%;

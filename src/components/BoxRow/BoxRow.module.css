@@ -1,0 +1,7 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0px;
+  align-self: stretch;
+  gap: 2rem;
+}

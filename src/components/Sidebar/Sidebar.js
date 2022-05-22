@@ -15,6 +15,12 @@ const Sidebar = () => {
       >
         RESET
       </button>
+      <button
+        onClick={() => dispatch(elementActions.redo())}
+        className={styles.btn}
+      >
+        REDO
+      </button>
       {sidebarElements.map((element, i) => (
         <Label key={i} name={element} />
       ))}
