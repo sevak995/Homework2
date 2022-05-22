@@ -1,7 +1,6 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { createBoxes, createBoxesMap } from '../Helpers/utils';
-
-const initialBoxes = createBoxes(10, 10);
+import { createBoxesMap } from '../Helpers/utils';
+import { initialBoxes } from '../Helpers/config';
 
 const initialState = {
   draggedElement: null,
@@ -22,8 +21,6 @@ const elementSlice = createSlice({
 
       boxClone[action.payload.boxData.row][action.payload.boxData.col] =
         state.draggedElement;
-
-      console.log('boxClone', boxClone);
 
       const updatedBoxes = createBoxesMap(boxClone, state.step);
       state.step++;

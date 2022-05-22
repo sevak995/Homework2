@@ -25,6 +25,8 @@ export default function Element(props) {
     case 'checkbox':
       return <input {...props}></input>;
     default:
-      console.log(`Element does not exist!`);
+      return (
+        <input {...props} type={props.type} className={text_input}></input>
+      );
   }
 }

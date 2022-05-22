@@ -4,7 +4,7 @@ import Element from '../Element/Element';
 import styles from './Dropped.module.css';
 
 const Dropped = ({ element, allAttributes }) => {
-  const [props, setProps] = useState({});
+  const [props, setProps] = useState({ type: element });
 
   return (
     <div className={styles.element}>
@@ -14,9 +14,8 @@ const Dropped = ({ element, allAttributes }) => {
         </label>
         <Element
           {...props}
-          type={element}
-          id={element}
           style={{ width: props.width }}
+          type={props.type === '' ? element : props.type}
         />
       </div>
       <Form attributes={allAttributes} setProps={setProps} />

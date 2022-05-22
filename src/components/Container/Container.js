@@ -4,11 +4,12 @@ import BoxRow from '../BoxRow/BoxRow';
 
 const Container = () => {
   const currentStep = useSelector((state) => state.elements.step);
-  const boxes = useSelector((state) => state.elements.boxes);
+
+  const boxes = useSelector((state) => state.elements.boxes[currentStep]);
 
   return (
     <div className={styles.container}>
-      {boxes[currentStep].flatMap((row, rowIndex) => {
+      {boxes.flatMap((row, rowIndex) => {
         if (row.find((el) => el !== null)) {
           return <BoxRow key={rowIndex} row={row} rowIndex={rowIndex} />;
         }
