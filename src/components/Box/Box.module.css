@@ -15,3 +15,9 @@
 .def {
   flex-basis: 100%;
 }
+
+.droppable {
+  background-color: gray;
+  border: 5px dashed black;
+  flex-basis: 100%;
+}

@@ -1,16 +1,16 @@
-import styles from './Box.module.css';
-import Dropped from '../Dropped/Dropped';
-import { elements } from '../../Helpers/elements';
-import { useDispatch, useSelector } from 'react-redux';
-import { elementActions } from '../../store/elements';
-import { customAttributes } from '../../Helpers/config';
+import styles from "./Box.module.css";
+import Dropped from "../Dropped/Dropped";
+import { elements } from "../../Helpers/elements";
+import { useDispatch, useSelector } from "react-redux";
+import { elementActions } from "../../store/elements";
+import { customAttributes } from "../../Helpers/config";
 
 export default function Box({ element, row, col }) {
   const dispatch = useDispatch();
 
   const draggedElement = useSelector((state) => state.elements.draggedElement);
 
-  const isDropped = Boolean(element !== 'empty');
+  const isDropped = Boolean(element !== "empty");
 
   let attributes = [];
 
@@ -41,11 +41,40 @@ export default function Box({ element, row, col }) {
     dispatch(elementActions.drop({ type: actionType, boxData }));
   }
 
+  function onDragEnter(event) {
+    event.preventDefault();
+
+    if (isDropped) {
+      return;
+    }
+
+    event.target.className = styles.droppable;
+  }
+
+  function onDragOver(event) {
+    event.preventDefault();
+
+    if (isDropped) {
+      return;
+    }
+  }
+
+  function onDragLeave(event) {
+    event.preventDefault();
+
+    if (isDropped) {
+      return;
+    }
+    event.target.className = styles.box;
+  }
+
   return (
     <>
       {element && (
         <div
           onDragOver={onDragOver}
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
           onDrop={onDrop}
           className={
             isDropped
